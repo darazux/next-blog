@@ -7,7 +7,7 @@ import logoImg from '@/public/images/logo.png';
 const Header = () => {
   return (
     <header>
-      <div>
+      <div className="container">
         <div>
           <Link href="/">
             <Image src={logoImg} alt="logo" />
