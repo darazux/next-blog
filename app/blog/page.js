@@ -27,16 +27,24 @@ async function getAllBlogs() {
 const Blog = async () => {
   const { blogs } = await getAllBlogs();
   return (
-    <div>
-      <h1>ブログページ</h1>
-      {blogs.map((blog, index) => (
-        <div key={index}>
-          <h2>{blog.frontmatter.title}</h2>
-          <p>{blog.frontmatter.date}</p>
-          <Link href={`/blog/${blog.slug}`}>Read More</Link>
+    <>
+      <div>
+        <div>
+          <h1>ブログページ</h1>
+          {blogs.map((blog, index) => (
+            <div key={index}>
+              <div>
+                <h2>{blog.frontmatter.title}</h2>
+                <p>{blog.frontmatter.excerpt}</p>
+                <p>{blog.frontmatter.date}</p>
+                <Link href={`/blog/${blog.slug}`}>Read More</Link>
+              </div>
+              <div></div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    </>
   );
 };
 

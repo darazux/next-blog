@@ -17,11 +17,16 @@ async function getSingleBlog(ctx) {
 const SingleBlog = async (props) => {
   const { singleDocument } = await getSingleBlog(props);
   return (
-    <div>
-      <h1>{singleDocument.data.title}</h1>
-      <p>{singleDocument.data.date}</p>
-      <ReactMarkdown>{singleDocument.content}</ReactMarkdown>
-    </div>
+    <>
+      <div></div>
+      <div>
+        <div>
+          <h1>{singleDocument.data.title}</h1>
+          <p>{singleDocument.data.date}</p>
+          <ReactMarkdown>{singleDocument.content}</ReactMarkdown>
+        </div>
+      </div>
+    </>
   );
 };
 
