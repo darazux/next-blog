@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import matter from 'gray-matter';
+import Image from 'next/image';
 import Link from 'next/link';
 import path from 'path';
 
@@ -39,7 +40,16 @@ const Blog = async () => {
                 <p>{blog.frontmatter.date}</p>
                 <Link href={`/blog/${blog.slug}`}>Read More</Link>
               </div>
-              <div></div>
+              <div>
+                <Image
+                  src={blog.frontmatter.image}
+                  alt="card-image"
+                  height={300}
+                  width={1000}
+                  quality={90}
+                  priority={true}
+                />
+              </div>
             </div>
           ))}
         </div>
