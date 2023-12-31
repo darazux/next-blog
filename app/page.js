@@ -4,8 +4,8 @@ import heroPic from '../public/images/index-hero.jpg';
 import profilePic from '../public/images/profile.jpg';
 
 export const metadata = {
-  title: 'Abe Hiroki',
-  description: 'Abe Hirokiのポートフォリオサイトです',
+  title: 'darazux',
+  description: 'darazux のポートフォリオサイトです',
 };
 
 const Index = () => {
