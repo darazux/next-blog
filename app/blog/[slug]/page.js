@@ -3,9 +3,17 @@
 import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
 import { getAllBlogs, getSingleBlog } from '@/app/utils/mdQueries';
+import PrevNext from '@/app/components/prevNext';
 
 const SingleBlog = async (props) => {
   const { singleDocument } = await getSingleBlog(props);
+  const { blogs } = await getAllBlogs();
+  const pagePrev = blogs.filter(
+    (blog) => blog.frontmatter.id === singleDocument.data.id - 1,
+  );
+  const pageNext = blogs.filter(
+    (blog) => blog.frontmatter.id === singleDocument.data.id + 1,
+  );
   return (
     <>
       <div className="img-container">
@@ -24,6 +32,7 @@ const SingleBlog = async (props) => {
           <p>{singleDocument.data.date}</p>
           <ReactMarkdown>{singleDocument.content}</ReactMarkdown>
         </div>
+        <PrevNext prev={pagePrev} next={pageNext} />
       </div>
     </>
   );
