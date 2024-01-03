@@ -29,7 +29,7 @@ export async function getAllBlogs() {
 
 export async function getSingleBlog(ctx) {
   const { slug } = ctx.params;
-  const data = await import(`@/data/${slug}.md`);
+  const data = await import(`../../data/${slug}.md`);
   const singleDocument = matter(data.default);
   return {
     singleDocument: singleDocument,
