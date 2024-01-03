@@ -1,13 +1,17 @@
-// app/blog/page.js
+// app/blog/page/[pagination]/page.js
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { getAllBlogs, blogsPerPage } from '@/app/utils/mdQueries';
-import Pagination from '../components/pagination';
+import Pagination from '@/app/components/pagination';
 
-const Blog = async () => {
+const PaginationPage = async (props) => {
   const { blogs, numberPages } = await getAllBlogs();
-  const limitedBlogs = blogs.slice(0, blogsPerPage);
+  const currentPage = props.params.pagination;
+  const limitedBlogs = blogs.slice(
+    (currentPage - 1) * blogsPerPage,
+    currentPage * blogsPerPage,
+  );
   return (
     <>
       <div className="wrapper">
@@ -41,4 +45,13 @@ const Blog = async () => {
   );
 };
 
-export default Blog;
+export default PaginationPage;
+
+export async function generateStaticParams() {
+  const { numberPages } = await getAllBlogs();
+  let paths = [];
+  Array.from({ length: numberPages }).map((_, index) =>
+    paths.push(`/blog/page/${index + 2}`),
+  );
+  return paths;
+}
