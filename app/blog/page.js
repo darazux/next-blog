@@ -1,29 +1,8 @@
 // app/blog/page.js
 
-import fs from 'fs';
-import matter from 'gray-matter';
 import Image from 'next/image';
 import Link from 'next/link';
-import path from 'path';
-
-async function getAllBlogs() {
-  const files = fs.readdirSync(path.join('data'));
-  const blogs = files.map((fileName) => {
-    const slug = fileName.replace('.md', '');
-    const fileData = fs.readFileSync(path.join('data', fileName), 'utf-8');
-    const { data } = matter(fileData);
-    return {
-      frontmatter: data,
-      slug: slug,
-    };
-  });
-  const orderedBlogs = blogs.sort((a, b) => {
-    return b.frontmatter.id - a.frontmatter.id;
-  });
-  return {
-    blogs: orderedBlogs,
-  };
-}
+import { getAllBlogs } from '@/app/utils/mdQueries';
 
 const Blog = async () => {
   const { blogs } = await getAllBlogs();
